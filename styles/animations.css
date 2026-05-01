@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════
+   animations.css — Keyframes, Reveals, Micro-interactions
+   DecodeLabs Project 1 · Batch 2026
+═══════════════════════════════════════════════════════ */
+
+/* ── Page load transition ── */
+body { animation: bodyFadeIn 400ms var(--ease) both; }
+@keyframes bodyFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   KEYFRAME DEFINITIONS
+══════════════════════════════════════ */
+
+/* Blob morphing floats */
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-3%, 4%) scale(1.05); }
+  66%       { transform: translate(2%, -3%) scale(0.97); }
+}
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(3%, -5%) scale(1.08); }
+  70%       { transform: translate(-2%, 3%) scale(0.95); }
+}
+
+/* Device float */
+@keyframes floatDevice {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-14px) rotate(0.5deg); }
+}
+
+/* Badge floats */
+@keyframes badgeFloat1 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50%       { transform: translateY(-6px) translateX(2px); }
+}
+@keyframes badgeFloat2 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50%       { transform: translateY(6px) translateX(-2px); }
+}
+
+/* Scroll cue pulse */
+@keyframes scrollPulse {
+  0%        { transform: scaleY(1);   opacity: 1; }
+  50%       { transform: scaleY(0.5); opacity: 0.3; }
+  100%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* Marquee scroll */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Logo mark spin */
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.08); }
+}
+
+/* Stat count pulse */
+@keyframes statReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   SCROLL-TRIGGERED REVEAL CLASSES
+   Added by JS when elements enter viewport
+══════════════════════════════════════ */
+
+/* Initial hidden states */
+.animate-up,
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity var(--t-slower) var(--ease),
+    transform var(--t-slower) var(--ease);
+}
+
+.animate-up,
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+
+/* Revealed state */
+.animate-up.in-view,
+.reveal-up.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ── Delay utilities ── */
+.delay-1 { transition-delay: 80ms; }
+.delay-2 { transition-delay: 160ms; }
+.delay-3 { transition-delay: 240ms; }
+.delay-4 { transition-delay: 320ms; }
+.delay-5 { transition-delay: 400ms; }
+.delay-6 { transition-delay: 480ms; }
+
+/* ══════════════════════════════════════
+   NAV LINK ACTIVE INDICATOR ANIMATION
+══════════════════════════════════════ */
+.nav__link::after {
+  transition: left var(--t-base) var(--ease), right var(--t-base) var(--ease);
+}
+
+/* ══════════════════════════════════════
+   CARD HOVER RIPPLE
+══════════════════════════════════════ */
+.service-card,
+.project-card {
+  isolation: isolate;
+}
+
+/* ══════════════════════════════════════
+   BUTTON HOVER STATE — arrow slide
+══════════════════════════════════════ */
+.btn__icon {
+  transition: transform var(--t-base) var(--ease);
+}
+.btn:hover .btn__icon {
+  transform: translateX(4px) rotate(-8deg);
+}
+
+/* ══════════════════════════════════════
+   FILTER TRANSITION
+══════════════════════════════════════ */
+.project-card {
+  transition:
+    transform var(--t-base),
+    box-shadow var(--t-base),
+    opacity 250ms var(--ease),
+    display 0s;
+}
+.project-card.hiding {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  pointer-events: none;
+}
+.project-card.showing {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ══════════════════════════════════════
+   FORM FOCUS RING PULSE
+══════════════════════════════════════ */
+.form-input:focus,
+.form-textarea:focus {
+  animation: focusRingIn 200ms var(--ease) both;
+}
+@keyframes focusRingIn {
+  from { box-shadow: 0 0 0 0 rgba(166, 133, 111, 0); }
+  to   { box-shadow: 0 0 0 3px rgba(166, 133, 111, 0.12); }
+}
+
+/* ══════════════════════════════════════
+   FORM SUCCESS / ERROR SHAKE
+══════════════════════════════════════ */
+.form-status.success { animation: slideUp 300ms var(--ease) both; }
+.form-status.error   { animation: errorShake 400ms var(--ease) both; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60%  { transform: translateX(-6px); }
+  40%, 80%  { transform: translateX(6px); }
+}
+
+/* ══════════════════════════════════════
+   HEADER SCROLL GLOW
+══════════════════════════════════════ */
+.header.scrolled {
+  animation: headerGlow 400ms var(--ease) both;
+}
+@keyframes headerGlow {
+  from { box-shadow: none; }
+  to   { box-shadow: var(--shadow-md); }
+}
+
+/* ══════════════════════════════════════
+   LOGO HOVER
+══════════════════════════════════════ */
+.logo__mark {
+  animation: none;
+  transition: transform var(--t-base) var(--ease);
+}
+
+/* ══════════════════════════════════════
+   SKIP LINK
+══════════════════════════════════════ */
+.skip-link { transition: top var(--t-fast); }
+
+/* ══════════════════════════════════════
+   SCROLL CUE
+══════════════════════════════════════ */
+.scroll-cue { transition: opacity var(--t-base); }
+.scroll-cue.hidden { opacity: 0; pointer-events: none; }
+
+/* ══════════════════════════════════════
+   BACK TO TOP BUTTON
+══════════════════════════════════════ */
+.back-top { transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast); }
+.back-top:hover { transform: translateY(-4px); }
+
+/* ══════════════════════════════════════
+   HAMBURGER BARS ANIMATE
+══════════════════════════════════════ */
+.hamburger__bar {
+  transform-origin: center;
+  transition: transform var(--t-base), opacity var(--t-base);
+}
+
+/* ══════════════════════════════════════
+   MOBILE NAV SLIDE DOWN
+══════════════════════════════════════ */
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ══════════════════════════════════════
+   REDUCED MOTION OVERRIDE
+══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .blob--1,
+  .blob--2,
+  .mockup,
+  .badge--tl,
+  .badge--br,
+  .scroll-cue__line,
+  .marquee-track {
+    animation: none !important;
+  }
+}

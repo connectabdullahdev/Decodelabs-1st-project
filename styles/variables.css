@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════
+   variables.css — Design Token System
+   DecodeLabs Project 1 · Batch 2026
+   Palette from PDF: Mocha Mousse, Ethereal Blue, Moonlit Grey
+═══════════════════════════════════════════════════════ */
+
+/* Google Fonts import (fallback if index.html link fails) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+:root {
+  /* ── Brand Colour Palette ── */
+  --mocha:          #A6856F;   /* Mocha Mousse — Stability, Warmth */
+  --mocha-light:    #C4A98F;
+  --mocha-lighter:  #E8D8C8;
+  --mocha-dark:     #7A5C45;
+  --mocha-darker:   #4E3A2A;
+
+  --ethereal:       #A0D4E0;   /* Ethereal Blue — Trust, Hope */
+  --ethereal-light: #C8E9F2;
+  --ethereal-dark:  #5EB8D0;
+  --ethereal-deeper:#2C98B8;
+
+  --moonlit:        #F2F0EA;   /* Moonlit Grey — Refinement */
+  --moonlit-warm:   #E8E4D9;
+  --moonlit-deep:   #D4CFBF;
+
+  /* ── Semantic Tokens (Light Theme) ── */
+  --bg:             #FAF8F4;
+  --bg-alt:         #F4F1EB;
+  --bg-card:        rgba(255, 255, 255, 0.80);
+  --bg-glass:       rgba(255, 255, 255, 0.60);
+  --bg-tinted:      rgba(166, 133, 111, 0.05);
+
+  --text-heading:   #1C1612;
+  --text-body:      #4A3F35;
+  --text-muted:     #8C7B6E;
+  --text-faint:     #B5A898;
+  --text-inverse:   #FAF8F4;
+
+  --border:         rgba(166, 133, 111, 0.18);
+  --border-strong:  rgba(166, 133, 111, 0.35);
+  --border-card:    rgba(255, 255, 255, 0.6);
+
+  /* ── Typography ── */
+  --font-head:     'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:     'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale using clamp() — adapts 375px→1440px */
+  --text-xs:    clamp(0.70rem, 0.65rem + 0.25vw, 0.80rem);
+  --text-sm:    clamp(0.85rem, 0.80rem + 0.25vw, 0.95rem);
+  --text-base:  clamp(1.00rem, 0.95rem + 0.25vw, 1.10rem);
+  --text-md:    clamp(1.10rem, 1.00rem + 0.50vw, 1.25rem);
+  --text-lg:    clamp(1.25rem, 1.10rem + 0.75vw, 1.50rem);
+  --text-xl:    clamp(1.50rem, 1.25rem + 1.25vw, 2.00rem);
+  --text-2xl:   clamp(1.75rem, 1.40rem + 1.75vw, 2.50rem);
+  --text-3xl:   clamp(2.00rem, 1.50rem + 2.50vw, 3.25rem);
+  --text-4xl:   clamp(2.50rem, 1.75rem + 3.75vw, 4.50rem);
+  --text-5xl:   clamp(3.00rem, 2.00rem + 5.00vw, 6.00rem);
+
+  /* Font weights */
+  --w-light:    300;
+  --w-regular:  400;
+  --w-medium:   500;
+  --w-semibold: 600;
+  --w-bold:     700;
+  --w-black:    900;
+
+  /* Line heights */
+  --lh-tight:   1.1;
+  --lh-snug:    1.3;
+  --lh-normal:  1.6;
+  --lh-relaxed: 1.8;
+
+  /* Letter spacing */
+  --ls-tight:  -0.03em;
+  --ls-normal:  0em;
+  --ls-wide:    0.06em;
+  --ls-wider:   0.12em;
+
+  /* ── Spacing — 4px base ── */
+  --sp-1:  0.25rem;   /*  4px */
+  --sp-2:  0.50rem;   /*  8px */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1.00rem;   /* 16px */
+  --sp-5:  1.25rem;   /* 20px */
+  --sp-6:  1.50rem;   /* 24px */
+  --sp-8:  2.00rem;   /* 32px */
+  --sp-10: 2.50rem;   /* 40px */
+  --sp-12: 3.00rem;   /* 48px */
+  --sp-16: 4.00rem;   /* 64px */
+  --sp-20: 5.00rem;   /* 80px */
+  --sp-24: 6.00rem;   /* 96px */
+  --sp-32: 8.00rem;   /* 128px */
+
+  /* ── Border Radius ── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   32px;
+  --r-2xl:  48px;
+  --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs:   0 1px 3px rgba(28, 22, 18, 0.06);
+  --shadow-sm:   0 2px 8px rgba(28, 22, 18, 0.08);
+  --shadow-md:   0 8px 24px rgba(28, 22, 18, 0.10);
+  --shadow-lg:   0 16px 48px rgba(28, 22, 18, 0.12);
+  --shadow-xl:   0 32px 80px rgba(28, 22, 18, 0.16);
+  --shadow-warm: 0 8px 32px rgba(166, 133, 111, 0.20);
+  --shadow-card: 0 2px 12px rgba(166, 133, 111, 0.10), 0 0 0 1px rgba(166, 133, 111, 0.08);
+  --shadow-glow: 0 0 40px rgba(160, 212, 224, 0.25);
+
+  /* ── Transitions ── */
+  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --t-fast:      160ms var(--ease);
+  --t-base:      280ms var(--ease);
+  --t-slow:      480ms var(--ease);
+  --t-slower:    720ms var(--ease);
+
+  /* ── Z-Index Layers ── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-dropdown:100;
+  --z-sticky:  200;
+  --z-fixed:   300;
+  --z-modal:   400;
+  --z-toast:   500;
+
+  /* ── Layout ── */
+  --max-w:     1200px;
+  --max-w-sm:  640px;
+  --max-w-md:  860px;
+  --nav-h:     72px;
+  --section-py: clamp(var(--sp-16), 8vw, var(--sp-32));
+}
+
+/* ═══ DARK THEME ═══ */
+body.theme-dark {
+  --bg:           #1C1612;
+  --bg-alt:       #241E18;
+  --bg-card:      rgba(36, 30, 24, 0.90);
+  --bg-glass:     rgba(36, 30, 24, 0.70);
+  --bg-tinted:    rgba(160, 212, 224, 0.05);
+
+  --text-heading: #F2F0EA;
+  --text-body:    #C4A98F;
+  --text-muted:   #8C7B6E;
+  --text-faint:   #5A4A3E;
+  --text-inverse: #1C1612;
+
+  --border:       rgba(160, 212, 224, 0.12);
+  --border-strong:rgba(160, 212, 224, 0.25);
+  --border-card:  rgba(160, 212, 224, 0.08);
+
+  --shadow-card:  0 2px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(160, 212, 224, 0.06);
+}
+
+/* ═══ ACCESSIBILITY OVERRIDES ═══ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-fast:   0ms;
+    --t-base:   0ms;
+    --t-slow:   0ms;
+    --t-slower: 0ms;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --text-muted: var(--text-body);
+    --border: rgba(166, 133, 111, 0.5);
+  }
+}

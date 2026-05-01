@@ -1,0 +1,312 @@
+/* ═══════════════════════════════════════════════════════
+   responsive.css — Mobile-First Media Queries
+   DecodeLabs Project 1 · Batch 2026
+   Strategy from PDF: Single column → min-width expand
+   Breakpoints: Tablet 768px, Desktop 1024px
+═══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   BASE = MOBILE (320px+)
+   All default styles above are mobile.
+   Here we handle VERY small screens first.
+══════════════════════════════════════ */
+
+/* ── 320px — Tiny phones ── */
+@media (max-width: 359px) {
+  .hero__cta { flex-direction: column; }
+  .hero__stats { flex-direction: column; gap: var(--sp-4); }
+  .stat__divider { display: none; }
+  .contact-form { padding: var(--sp-6); }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════
+   MOBILE (360px–767px) — key adjustments
+══════════════════════════════════════ */
+
+/* Hide desktop nav, show hamburger */
+.nav { display: none; }
+.hamburger { display: flex; }
+
+/* Mobile nav — full-width dropdown */
+.nav.nav--open {
+  display: flex;
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-4) 0;
+  animation: navSlideDown 250ms var(--ease) both;
+  z-index: var(--z-fixed);
+}
+.nav--open .nav__list {
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.nav--open .nav__link {
+  display: block;
+  width: 100%;
+  padding: var(--sp-4) var(--sp-8);
+  border-radius: 0;
+  font-size: var(--text-base);
+}
+.nav--open .nav__link::after { display: none; }
+
+/* Hero — single column on mobile */
+.hero__grid {
+  grid-template-columns: 1fr;
+  gap: var(--sp-10);
+  text-align: center;
+}
+.hero__copy { order: 1; }
+.hero__visual { order: 2; }
+
+.hero__sub { margin-inline: auto; }
+.hero__cta { justify-content: center; }
+.hero__stats { justify-content: center; }
+
+/* About — single column */
+.about__grid { grid-template-columns: 1fr; gap: var(--sp-10); }
+.about__visual { order: 2; }
+.about__copy { order: 1; }
+.about__card-inner { padding: var(--sp-8); }
+
+/* Services — single column */
+.services__grid { grid-template-columns: 1fr; gap: var(--sp-5); }
+
+/* Portfolio — single column */
+.portfolio__grid { grid-template-columns: 1fr; gap: var(--sp-5); }
+
+/* Filter bar — wrap */
+.filter-bar { gap: var(--sp-2); }
+.filter-btn { padding: var(--sp-2) var(--sp-4); font-size: var(--text-xs); }
+
+/* Contact — single column */
+.contact__grid { grid-template-columns: 1fr; gap: var(--sp-10); }
+.contact-form { padding: var(--sp-8); }
+.form-row { grid-template-columns: 1fr; gap: var(--sp-5); }
+
+/* Footer — single column */
+.footer__inner {
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+}
+.footer__bottom-inner {
+  flex-direction: column;
+  gap: var(--sp-4);
+  text-align: center;
+}
+.footer__tagline { max-width: 100%; }
+
+/* Badges — hide on very small screens to avoid overflow */
+@media (max-width: 480px) {
+  .badge { display: none; }
+}
+
+/* ══════════════════════════════════════
+   TABLET (768px+)
+   From PDF: Tablet breakpoint = 768px
+══════════════════════════════════════ */
+@media (min-width: 768px) {
+
+  /* Show desktop nav */
+  .nav { display: flex; }
+  .hamburger { display: none; }
+
+  /* Hero — still single column but larger */
+  .hero__grid {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    margin-inline: auto;
+  }
+  .hero__visual { display: none; } /* show on desktop */
+
+  /* About — side by side */
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-12);
+  }
+  .about__visual { order: 1; }
+  .about__copy { order: 2; }
+
+  /* Services — 2 columns */
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Portfolio — 2 columns */
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Contact — side by side */
+  .contact__grid {
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--sp-12);
+  }
+
+  /* Form row back to 2 columns */
+  .form-row { grid-template-columns: 1fr 1fr; }
+
+  /* Footer — 3 columns */
+  .footer__inner { grid-template-columns: 2fr 1fr 1fr; }
+  .footer__bottom-inner { flex-direction: row; text-align: left; }
+}
+
+/* ══════════════════════════════════════
+   DESKTOP (1024px+)
+   From PDF: Desktop breakpoint = 1024px
+══════════════════════════════════════ */
+@media (min-width: 1024px) {
+
+  /* Hero — full 2-column layout */
+  .hero__grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--max-w);
+    gap: clamp(var(--sp-12), 6vw, var(--sp-24));
+    text-align: left;
+  }
+  .hero__visual { display: flex; }
+  .hero__copy { order: 1; }
+  .hero__visual { order: 2; }
+  .hero__sub { margin-inline: 0; }
+  .hero__cta { justify-content: flex-start; }
+  .hero__stats { justify-content: flex-start; }
+
+  /* Services — 3 columns */
+  .services__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Portfolio — 3 columns */
+  .portfolio__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* About highlights — 2 columns */
+  .about__highlights { grid-template-columns: 1fr 1fr; }
+
+  /* Section header left-align on detail pages */
+  .about .section__header { text-align: left; margin-inline: 0; }
+}
+
+/* ══════════════════════════════════════
+   LARGE DESKTOP (1280px+)
+══════════════════════════════════════ */
+@media (min-width: 1280px) {
+
+  /* Nav links get more breathing room */
+  .nav__list { gap: var(--sp-3); }
+  .nav__link { padding: var(--sp-2) var(--sp-5); }
+
+  /* About — more gap */
+  .about__grid { gap: var(--sp-24); }
+  .contact__grid { gap: var(--sp-24); }
+}
+
+/* ══════════════════════════════════════
+   ULTRAWIDE (1536px+)
+══════════════════════════════════════ */
+@media (min-width: 1536px) {
+  /* Services 3→ max keeps well, but can go 3 wide */
+  /* Portfolio grid keeps at 3 col for readability */
+  .portfolio__grid { column-gap: var(--sp-8); }
+}
+
+/* ══════════════════════════════════════
+   TOUCH DEVICE OPTIMISATIONS
+══════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  /* Minimum touch target: 44×44px */
+  .btn    { min-height: 44px; padding-inline: var(--sp-6); }
+  .nav__link { min-height: 44px; display: flex; align-items: center; }
+  .filter-btn { min-height: 44px; }
+  .theme-btn, .hamburger { min-width: 44px; min-height: 44px; }
+
+  /* Remove hover-only card lifts on touch */
+  .project-card:hover { transform: none; }
+  .service-card:hover { transform: none; }
+
+  /* Make overlays always slightly visible on touch */
+  .project-card__overlay { opacity: 0; }
+  .project-card:focus .project-card__overlay { opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   HIGH-RESOLUTION DISPLAYS
+══════════════════════════════════════ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .header { border-bottom-width: 0.5px; }
+}
+
+/* ══════════════════════════════════════
+   DARK MODE
+══════════════════════════════════════ */
+body.theme-dark .service-card {
+  background: var(--bg-card);
+}
+body.theme-dark .project-card {
+  background: var(--bg-card);
+}
+body.theme-dark .contact-form {
+  background: var(--bg-card);
+}
+body.theme-dark .about__card {
+  background: var(--bg-card);
+}
+body.theme-dark .blob--1 { opacity: 0.15; }
+body.theme-dark .blob--2 { opacity: 0.12; }
+body.theme-dark .mockup {
+  background: rgba(36, 30, 24, 0.90);
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(160, 212, 224, 0.06);
+}
+body.theme-dark .mockup__screen { background: var(--bg-alt); }
+body.theme-dark .mockup__bar { background: var(--bg); }
+
+/* Dark mode nav overlay */
+body.theme-dark .nav--open {
+  background: rgba(28, 22, 18, 0.95);
+}
+
+/* ══════════════════════════════════════
+   PRINT
+══════════════════════════════════════ */
+@media print {
+  .header,
+  .progress-bar,
+  .scroll-cue,
+  .marquee-section,
+  .blob,
+  .badge,
+  .theme-btn,
+  .hamburger {
+    display: none !important;
+  }
+
+  body { background: white; color: black; }
+  .footer { background: white; color: black; }
+  .footer__link, .footer__copy { color: #333; }
+  .btn--primary { background: #a6856f; color: white; -webkit-print-color-adjust: exact; }
+  * { box-shadow: none !important; }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #666;
+  }
+  a[href^="#"]::after { content: none; }
+  h1, h2, h3 { page-break-after: avoid; }
+  .project-card, .service-card { page-break-inside: avoid; }
+}
+
+/* ══════════════════════════════════════
+   SYSTEM DARK MODE (fallback if no JS)
+══════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-light):not(.theme-dark) {
+    --bg:           #1C1612;
+    --bg-alt:       #241E18;
+    --bg-card:      rgba(36, 30, 24, 0.90);
+    --text-heading: #F2F0EA;
+    --text-body:    #C4A98F;
+    --text-muted:   #8C7B6E;
+    --border:       rgba(160, 212, 224, 0.12);
+  }
+}
